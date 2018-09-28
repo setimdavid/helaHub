@@ -1,0 +1,66 @@
+<!--
+  ~ Copyright (c) 2018
+  ~       BSK (BlueSky Consultants Limited, Kenya)
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
+
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--<file>file:${TAUCONFIG}/logs/tau.log</file>-->
+        <!--<file>tau.log</file>-->
+        <file>../logs/kuza-config.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>-->
+            <pattern>%date|%-5level|CONFIG|[%thread] |%-30.30logger\(%line\) |%msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <!--<FileNamePattern>file:${TAUCONFIG}/logs/tau.%i.log.zip</FileNamePattern>-->
+            <FileNamePattern>../logs/helaHub-config.%i.log.zip</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>100</MaxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>200MB</MaxFileSize>
+        </triggeringPolicy>
+
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>%.-1level|CONFIG|%-30.30logger{0}|%msg%n</pattern>-->
+            <pattern>%date|%.-1level|CONFIG|%-30.30logger{0}\(%line\)|%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.app.helaHub" level="WARN"/>
+    <logger name="org.app.helaHub.config" level="info"/>
+    <logger name="org.freemarker" level="info"/>
+    <logger name="kafka" level="WARN"/>
+    <logger name="hazelcast" level="WARN"/>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

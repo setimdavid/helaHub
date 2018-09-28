@@ -1,0 +1,4 @@
+org\app\helaHub\store\config\HibernateJpaConfiguration.class
+org\app\helaHub\store\config\cache\HazelcastCacheConfigurer.class
+org\app\helaHub\store\repo\SubscribersDetails.class
+org\app\helaHub\store\StoreApplication.class

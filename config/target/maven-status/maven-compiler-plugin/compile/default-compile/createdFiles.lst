@@ -1,0 +1,6 @@
+org\app\helaHub\config\properties\JpaConnectionProperties.class
+org\app\helaHub\config\security\JasyptProperties.class
+org\app\helaHub\config\security\HashingImplementation.class
+org\app\helaHub\config\ConfigApplication.class
+org\app\helaHub\config\properties\HazelCastCacheProperties.class
+org\app\helaHub\config\properties\OrganizationProperties.class
